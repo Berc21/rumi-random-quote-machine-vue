@@ -5,23 +5,20 @@
         <div class="card">
           <div class="card-content">
             <p class="title">
-              “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
+            {{quote}}
             </p>
             <p class="subtitle">
-              Jeff Atwood
+             Rumi
             </p>
           </div>
           <footer class="card-footer">
             <p class="card-footer-item">
-                  <button class="button is-link is-size-5">Show another one</button>
+                  <button class="button is-link is-size-5" @click="showAnother">Show another one</button>
             </p>
             <p class="card-footer-item">
-              <social-sharing url="https://localhost:3000/" title="Rumi Quote Machine" description="There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors." quote="There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors."
+              <social-sharing url="https://localhost:3000/" :title="quote"
               inline-template>
                 <div>
-                  <network network="facebook">
-                    <font-awesome-icon size="3x" color="#4267B2" :icon="['fab', 'facebook-square']" />
-                  </network>
                   <network network="twitter">
                     <font-awesome-icon size="3x" color="#1DA1F2" :icon="['fab', 'twitter-square']" />
                   </network>
@@ -40,9 +37,26 @@
 export default {
   name: "QuoteCard",
   data() {
-    return {};
+    return {
+      quote: "",
+      favs: [],
+    };
   },
-  created() {}
+  methods: {
+    showAnother() {
+      fetch("http://localhost:3000/quotes")
+        .then(res => res.json())
+        .then(res => (this.quote = res.quote));
+    },
+    fav() {
+
+    }
+  },
+  created() {
+    fetch("http://localhost:3000/quotes")
+      .then(res => res.json())
+      .then(res => (this.quote = res.quote));
+  }
 };
 </script>
 
