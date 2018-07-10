@@ -16,7 +16,7 @@
                   <button class="button is-link is-size-5" @click="showAnother">Show another one</button>
             </p>
             <p class="card-footer-item">
-              <social-sharing url="https://localhost:3000/" :title="quote"
+              <social-sharing url="https://rumiquotes.netlify.com/" :title="quote"
               inline-template>
                 <div>
                   <network network="twitter">
