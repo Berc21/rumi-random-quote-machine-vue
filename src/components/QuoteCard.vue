@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import getQuote from '@/services/'
 export default {
   name: "QuoteCard",
   data() {
@@ -44,19 +45,12 @@ export default {
   },
   methods: {
     showAnother() {
-      fetch("http://localhost:3000/quotes")
-        .then(res => res.json())
-        .then(res => (this.quote = res.quote));
+      getQuote().then(res => (this.quote = res.quote));
     },
-    fav() {
-
-    }
   },
   created() {
-    fetch("http://localhost:3000/quotes")
-      .then(res => res.json())
-      .then(res => (this.quote = res.quote));
-  }
+    getQuote().then(res => (this.quote = res.quote));
+  },
 };
 </script>
 
